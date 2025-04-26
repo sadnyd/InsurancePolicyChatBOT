@@ -23,7 +23,7 @@ class EmbeddingService:
                             contents=text,
                             model=self.model_name
                             )
-                embeddings.append(response.embeddings)
+                embeddings.append(response.embeddings[0].values)
 
             except Exception as e:
                 print(f"Error embedding text: {e}")
