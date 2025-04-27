@@ -9,7 +9,7 @@ class VectorStoreService:
     def __init__(self):
         self.pinecone_api_key = os.getenv("PINECONE_API_KEY")
         self.index_name = "policy_index"
-        self.dimension = 768  # Dimension of your custom embeddings
+        self.dimension = 768  
         self.cloud = "aws"
         self.region = "us-east-1"
 
@@ -50,7 +50,7 @@ class VectorStoreService:
             vector_id = f"chunk-{i}"
             metadata = {"chunk_text": chunk}
 
-            # 🛠 FIX: If embedding is an object, extract its values
+            # If embedding is an object, extract its values
             if hasattr(embedding, "values"):
                 embedding = embedding.values  # Take the raw list
 
@@ -84,5 +84,5 @@ class VectorStoreService:
     def delete_all(self):
         """ Delete all vectors from the index (use carefully). """
         self.index.delete(delete_all=True)
-        print("🗑️ All vectors deleted from the index.")
+        print(" All vectors deleted from the index.")
 
