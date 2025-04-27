@@ -8,7 +8,7 @@ load_dotenv()
 class VectorStoreService:
     def __init__(self):
         self.pinecone_api_key = os.getenv("PINECONE_API_KEY")
-        self.index_name = "policy_index"
+        self.index_name = "policy-index"
         self.dimension = 768  
         self.cloud = "aws"
         self.region = "us-east-1"

@@ -1,8 +1,8 @@
 from services.pdf_loader_service import PDFLoaderService
 from services.chunking_service import ChunkingService
 from services.embedding_service import EmbeddingService
-from services.vector_store_service import VectorStoreService
-from services.llm_service import GeminiContextualQA  
+from services.vector_store_service import VectorStoreService  
+from services.llm_service import GeminiContextualQA
 
 def main():
     pdf_path = "test.pdf"
@@ -42,16 +42,14 @@ def main():
     print(embeddings[0][:10])
 
     # -----------------------------
-    # 🧠 Store embeddings into Pinecone
+    # 🧠 Test VectorStoreService here
     # -----------------------------
     print("\n🚀 Storing embeddings into Pinecone...")
     vector_store = VectorStoreService()
     vector_store.store(chunks, embeddings)
     print("✅ Stored embeddings successfully!")
 
-    # -----------------------------
-    # 🔎 Search test
-    # -----------------------------
+    # Optional: Search test
     print("\n🔎 Running a sample search...")
     sample_query = "Summary of the document"  # You can change
     sample_query_embedding = embedding_service.get_embeddings([sample_query])[0]
@@ -64,13 +62,9 @@ def main():
             print(f"  Chunk: {match['metadata']['chunk_text'][:200]}...")
     else:
         print("❌ No matches found.")
-        return  # No point going ahead if no matches
-
-    # -----------------------------
-    # ✨ NEW: Run Query against Gemini!
-    # -----------------------------
+    
     print("\n🤖 Running the query with Gemini...")
-    qa_service = GeminiContextualQA(top_k=5, system_instruction="You are a helpful AI assistant for summarizing documents.")
+    qa_service = GeminiContextualQA(top_k=5)
     user_query = "Can you summarize the main points of this document?"
 
     response = qa_service.ask(
