@@ -1,6 +1,6 @@
 # InsurancePolicyChatBOT
 
-# Flask API for PDF Upload and Querying with LLM
+# Flask API for PDF Upload and Querying with LLM and Bacic Frontend using Streamlit
 
 This app users to upload PDF files, store them in a vector database, and query the stored content using gemini flash 2.0 LLM model. The API processes PDF files by extracting text, splitting it into semantic chunks, generating embeddings, and then storing them in a vector store for later querying.
 
